@@ -1,0 +1,4 @@
+# Specify the dev requirements here
+mypy~=1.12.0
+pytest~=8.3.3
+ruff~=0.6.9

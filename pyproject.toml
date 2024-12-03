@@ -1,0 +1,76 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "assaiku"
+description = "Project description"
+requires-python = "~=3.12"
+authors = [
+  {name = "Arnaud", email = "guibberta@gmail.com"}
+]
+maintainers = [
+  {name = "Arnaud", email = "guibberta@gmail.com"}
+]
+license = {file = "LICENSE"}
+keywords = []
+dynamic = ["readme",
+           "version",
+           "dependencies", 
+           "optional-dependencies"]
+
+[project.urls]
+# Homepage = "<HOME_PAGE_URL>"
+# Documentation = "<DOCUMENTATION_URL>"
+# Changelog = "<CHANGELOG_URL>"
+Repository = "https://github.com/arnaudguibbert/dataiku-analysis"
+
+[tool.setuptools.dynamic]
+readme = {file = "README"}
+version = {file = "VERSION"}
+dependencies = {file = ["requirements/main.txt"]}
+optional-dependencies.dev = {file = ["requirements/dev.txt"]}
+optional-dependencies.docs = {file = ["requirements/docs.txt"]}
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["assaiku*"]
+# Comment next line if you intend to use namespace pkgs
+namespaces = false
+
+[tool.ruff]
+# Set the maximum line length to 80.
+line-length = 80
+include = ["*.py",
+           "*.pyi",
+           "*.ipynb"]
+
+# uncomment if you are building a namespace pkg
+# namespace-packages = ["assaiku/<NAMESPACE>"]
+output-format = "concise"
+show-fixes = true
+
+
+[tool.ruff.lint]
+select = ["ALL"] # Selecting all rules
+ignore = [
+    "F401", # unused import 
+    "COM812", # Trailing comma missing
+    "ISC001", # Implicitly concatenated string literals on one line
+    "D104", # Missing docstring in public package
+    "D100", # Missing docstring in public module
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+# Mypy config
+[tool.mypy]
+warn_return_any = true
+warn_unused_configs = true
+# If you are using namespace packages, set the two following properties to true
+# And uncomment mypy_path
+explicit_package_bases = false
+namespace_packages = false
+# mypy_path = "./"
+files = ["./assaiku", "./tests"]

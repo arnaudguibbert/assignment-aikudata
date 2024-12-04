@@ -1,6 +1,6 @@
 import pandera as pa
 
-from .constants.categories import *
+from assaiku.data.constants.categories import *
 
 
 class DataValidator(pa.DataFrameModel):

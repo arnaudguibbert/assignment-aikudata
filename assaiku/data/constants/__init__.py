@@ -1,7 +1,7 @@
 from .columns import (
-    NUMERICAL_COLS,
-    COLUMNS,
     CATEGORICAL_COLS,
+    COLUMNS,
     LABEL_COL,
+    NUMERICAL_COLS,
     WEIGHT_COL,
 )

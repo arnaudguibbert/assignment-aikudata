@@ -1,13 +1,12 @@
 from pydantic import BaseModel
 
 from .constants import (
-    NUMERICAL_COLS,
     CATEGORICAL_COLS,
-    LABEL_COL,
-    WEIGHT_COL,
     COLUMNS,
+    LABEL_COL,
+    NUMERICAL_COLS,
+    WEIGHT_COL,
 )
-
 from .constants.categories import INCOME
 
 
@@ -25,3 +24,11 @@ class DataConfig(BaseModel):
     @property
     def features(self) -> list[str]:
         return self.numerical_cols + list(self.categorical_cols.keys())
+
+    @property
+    def mixed_categorical_cols(self) -> dict[str, list[str]]:
+        return {**self.categorical_cols, self.label: self.label_values}
+
+    @property
+    def features_labels(self) -> list[str]:
+        return [*self.features, self.label]

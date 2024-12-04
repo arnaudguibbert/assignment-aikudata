@@ -1,3 +1,5 @@
 # Specify the main requirements here
-pydantic~=2.10.3
+pandas~=2.2.3
 pandera~=0.21.1
+pydantic~=2.10.3
+seaborn~=0.13.2

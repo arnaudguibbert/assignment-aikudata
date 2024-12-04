@@ -59,6 +59,8 @@ ignore = [
     "ISC001", # Implicitly concatenated string literals on one line
     "D104", # Missing docstring in public package
     "D100", # Missing docstring in public module
+    "D",
+    "F",
 ]
 
 [tool.ruff.lint.pydocstyle]

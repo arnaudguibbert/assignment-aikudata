@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "assaiku"
 description = "Project description"
-requires-python = "~=3.12"
+requires-python = "~=3.11"
 authors = [
   {name = "Arnaud", email = "guibberta@gmail.com"}
 ]

@@ -1,5 +1,5 @@
 # Input variables
-PYTHON_VERSION=3.12
+PYTHON_VERSION=3.11
 MANAGER=micromamba
 ENV_NAME=assaiku
 PYTHON_FILES=assaiku tests

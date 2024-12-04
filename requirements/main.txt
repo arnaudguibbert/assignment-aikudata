@@ -1,1 +1,3 @@
 # Specify the main requirements here
+pydantic~=2.10.3
+pandera~=0.21.1

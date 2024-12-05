@@ -2,7 +2,7 @@
 PYTHON_VERSION=3.11
 MANAGER=micromamba
 ENV_NAME=assaiku
-PYTHON_FILES=assaiku tests
+PYTHON_FILES=assaiku
 AUTHOR=ArnaudGuibbert
 VERSION=$(shell cat VERSION)
 

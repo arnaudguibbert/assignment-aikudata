@@ -41,7 +41,7 @@ def visualize_categorical_dist(
     label_col, weight_col = data_config.label, data_config.weight_col
 
     for col, ax in zip(categorical_cols, axes.flatten(), strict=False):
-        print(f"Analysing {col} categorical feature")
+        # print(f"Analysing {col} categorical feature")
 
         dist = compute_dist(
             data=data, cat_col=col, label_col=label_col, weight_col=weight_col

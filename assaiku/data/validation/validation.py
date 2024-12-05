@@ -1,7 +1,7 @@
 import pandas as pd
 
 from assaiku.data.config import DataConfig
-from assaiku.data.load import load_data
+from assaiku.data.utils.load import load_data
 
 from .model import DataValidator
 

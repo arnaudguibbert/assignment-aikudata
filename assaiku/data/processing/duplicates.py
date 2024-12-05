@@ -1,7 +1,9 @@
 import pandas as pd
 
 
-def remove_duplicates(data: pd.DataFrame, weight_col: str) -> pd.DataFrame:
+def remove_group_duplicates(
+    data: pd.DataFrame, weight_col: str
+) -> pd.DataFrame:
     n_duplicates = len(data) - len(data.drop_duplicates())
     print("Number of duplicates including instances_weights:", n_duplicates)
 

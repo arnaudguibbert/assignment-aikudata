@@ -24,7 +24,7 @@ def visualize_continuous_dist(
     fig, axes = plt.subplots(n_rows, n_cols, figsize=(n_cols * 10, n_rows * 5))
 
     for col, ax in zip(numerical_cols, axes.flatten(), strict=False):
-        print(f"Analyzing {col} continuous feature")
+        # print(f"Analyzing {col} continuous feature")
 
         x_log_scale = False
         serie = data[col]

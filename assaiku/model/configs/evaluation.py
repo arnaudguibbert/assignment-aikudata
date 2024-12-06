@@ -12,6 +12,8 @@ class EvaluationConfig(BaseModel):
     model_configs: list[ModelBaseConfig] = [
         XGBConfig(),
         LinearSVMConfig(rbf_feataug=True, balance_weights=True),
-        # LogisticRegressionConfig(),
-        # LogisticRegressionConfig(dimension_red=20),
+        LogisticRegressionConfig(),
+        LogisticRegressionConfig(dimension_red=20),
     ]
+
+    folder_out_result: str = "../results/model"

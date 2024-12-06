@@ -2,8 +2,16 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
+import os
+from assaiku.utils import create_folders
 
-def analyze_data(data_dict: dict, idx_class: int):
+
+def analyze_data(data_dict: dict, idx_class: int,
+                 folder_path: str | None = None):
+    
+    if folder_path is not None:
+        create_folders(folder_path)
+
     data = pd.DataFrame.from_records(data_dict)
     data = pd.melt(
         data,
@@ -32,3 +40,8 @@ def analyze_data(data_dict: dict, idx_class: int):
     ax_test.set_ylim([low_lim, 1])
 
     fig.tight_layout()
+
+    if folder_path is not None:
+
+        file_path = os.path.join(folder_path,f"performances_class_{idx_class}.png")
+        fig.savefig(file_path)

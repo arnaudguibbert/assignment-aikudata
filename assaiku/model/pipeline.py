@@ -10,6 +10,7 @@ from .processors import (
     split_transform,
 )
 from .train import initialize_model, train_model
+from .evaluation import analyze_data
 
 
 class MLPipe:
@@ -93,4 +94,5 @@ class MLPipe:
                     ]
                 ]
 
-        return data
+        analyze_data(data_dict=data, idx_class=1, folder_path=self.evaluation_config.folder_out_result)
+        analyze_data(data_dict=data, idx_class=0, folder_path=self.evaluation_config.folder_out_result)

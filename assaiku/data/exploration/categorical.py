@@ -40,7 +40,8 @@ def visualize_distance(data: pd.DataFrame,
     data_config: DataConfig,
     folder_path: str | None = None,
     feat_col: str = "feature",
-    distance: str = "distance") -> None:
+    distance: str = "distance",
+    truncate: int= 15) -> None:
 
     if folder_path is not None:
         create_folders(folder_path)
@@ -69,12 +70,14 @@ def visualize_distance(data: pd.DataFrame,
 
     distance_data = pd.DataFrame.from_records(distance_values)
     distance_data.sort_values(by=distance,inplace=True, ascending=False)
+    distance_data = distance_data.iloc[:truncate]
 
-    fig = plt.figure(figsize=(12,7))
+    fig = plt.figure(figsize=(20,10))
     ax = sns.barplot(data=distance_data,x=feat_col,y=distance)
-    ax.tick_params(axis="x", rotation=80)
+    ax.tick_params(axis="x", rotation=70)
     ax.set_yscale("log")
     ax.set_title("Earth mover Distance between the distribution of each group")
+    fig.tight_layout()
 
     if folder_path is not None:
         file_path = os.path.join(folder_path,f"distribution_distance.png")

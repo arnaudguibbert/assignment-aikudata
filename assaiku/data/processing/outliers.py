@@ -53,15 +53,12 @@ def filter_outliers(
         ax.set_title("Distribution of outlier scores on training set")
         fig.savefig(os.path.join(folder_path, "histogram_outliers"))
 
-        outlier_model_path = os.path.join(folder_path, "outlier_model.joblib")
-        joblib.dump(ecod, outlier_model_path)
-
     # Get scores on training data
     y_test_scores = ecod.decision_function(test_data_num)
     non_outlier_test_mask = y_test_scores <= threshold
     n_test_outliers = (~non_outlier_test_mask).sum()
 
-    print(f"Found {n_test_outliers} outlier in train set")
+    print(f"Found {n_test_outliers} outlier in test set")
 
     print("Filtering out outliers from train and test data")
     train_data = train_data[non_outlier_train_mask]

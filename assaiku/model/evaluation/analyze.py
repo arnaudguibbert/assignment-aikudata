@@ -6,9 +6,9 @@ import os
 from assaiku.utils import create_folders
 
 
-def analyze_data(data_dict: dict, idx_class: int,
-                 folder_path: str | None = None):
-    
+def analyze_data(
+    data_dict: dict, idx_class: int, folder_path: str | None = None
+):
     if folder_path is not None:
         create_folders(folder_path)
 
@@ -42,6 +42,7 @@ def analyze_data(data_dict: dict, idx_class: int,
     fig.tight_layout()
 
     if folder_path is not None:
-
-        file_path = os.path.join(folder_path,f"performances_class_{idx_class}.png")
+        file_path = os.path.join(
+            folder_path, f"performances_class_{idx_class}.png"
+        )
         fig.savefig(file_path)

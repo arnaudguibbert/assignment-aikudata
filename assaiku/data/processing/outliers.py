@@ -16,7 +16,6 @@ def filter_outliers(
     threshold: int,
     folder_path: str | None = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
-    
     if folder_path is not None:
         create_folders(folder_path)
 

@@ -94,5 +94,13 @@ class MLPipe:
                     ]
                 ]
 
-        analyze_data(data_dict=data, idx_class=1, folder_path=self.evaluation_config.folder_out_result)
-        analyze_data(data_dict=data, idx_class=0, folder_path=self.evaluation_config.folder_out_result)
+        analyze_data(
+            data_dict=data,
+            idx_class=1,
+            folder_path=self.evaluation_config.folder_out_result,
+        )
+        analyze_data(
+            data_dict=data,
+            idx_class=0,
+            folder_path=self.evaluation_config.folder_out_result,
+        )

@@ -26,12 +26,14 @@ class DataPipe:
             # removing duplicates and grouping instances
             print("Removing duplicates train set")
             train_data = remove_group_duplicates(
-                data=train_data, weight_col=self.data_config.weight_col,
+                data=train_data,
+                weight_col=self.data_config.weight_col,
                 remove_age=perform_explo,
             )
             print("Removing duplicates test set")
             test_data = remove_group_duplicates(
-                data=test_data, weight_col=self.data_config.weight_col,
+                data=test_data,
+                weight_col=self.data_config.weight_col,
                 remove_age=perform_explo,
             )
 
@@ -47,33 +49,28 @@ class DataPipe:
             analyze_label_dist(train_data_explo, self.data_config)
             analyze_label_dist(test_data_explo, self.data_config)
 
-            visualize_correlation(data=train_data,
-                                  data_config=self.data_config,
-                                  folder_path=self.data_config.path_in_explo(
-                    "train_continuous"
-                ))
-            
+            visualize_correlation(
+                data=train_data,
+                data_config=self.data_config,
+                folder_path=self.data_config.path_in_explo("train_continuous"),
+            )
 
             visualize_continuous_dist(
                 data=train_data_explo,
                 data_config=self.data_config,
-                folder_path=self.data_config.path_in_explo(
-                    "train_continuous"
-                ),
+                folder_path=self.data_config.path_in_explo("train_continuous"),
             )
 
-            visualize_distance(data=train_data,
-                                  data_config=self.data_config,
-                                  folder_path=self.data_config.path_in_explo(
-                    "train_categorical"
-                ))
+            visualize_distance(
+                data=train_data,
+                data_config=self.data_config,
+                folder_path=self.data_config.path_in_explo("train_categorical"),
+            )
 
             visualize_categorical_dist(
                 data=train_data_explo,
                 data_config=self.data_config,
-                folder_path=self.data_config.path_in_explo(
-                    "train_categorical"
-                ),
+                folder_path=self.data_config.path_in_explo("train_categorical"),
             )
 
             # visualize_continuous_dist(
@@ -94,7 +91,6 @@ class DataPipe:
             del test_data_explo
 
         else:
-
             # Filtering outliers
             train_data, test_data = filter_outliers(
                 train_data=train_data,

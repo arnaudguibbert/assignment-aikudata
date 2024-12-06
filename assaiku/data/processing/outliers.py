@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 from pyod.models.ecod import ECOD
+from assaiku.utils import create_folders
 
 
 def filter_outliers(
@@ -13,8 +14,12 @@ def filter_outliers(
     test_data: pd.DataFrame,
     numerical_cols: list[str],
     threshold: int,
-    save_path: str | None = None,
+    folder_path: str | None = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
+    
+    if folder_path is not None:
+        create_folders(folder_path)
+
     train_data_num = train_data[numerical_cols]
     test_data_num = test_data[numerical_cols]
 
@@ -28,8 +33,8 @@ def filter_outliers(
 
     print(f"Found {n_train_outliers} outlier in train set")
 
-    if save_path is not None:
-        explain_fig = os.path.join(save_path, "explain_outlier")
+    if folder_path is not None:
+        explain_fig = os.path.join(folder_path, "explain_outlier")
         # Get the most confident outlier and explain it
         biggest_outlier_idx = np.argsort(y_train_scores)[-1]
         fig = plt.figure()
@@ -46,9 +51,9 @@ def filter_outliers(
         ax.set_yscale("log")
         ax.set_xlabel("Outlier score")
         ax.set_title("Distribution of outlier scores on training set")
-        fig.savefig(os.path.join(save_path, "histogram_outliers"))
+        fig.savefig(os.path.join(folder_path, "histogram_outliers"))
 
-        outlier_model_path = os.path.join(save_path, "outlier_model.joblib")
+        outlier_model_path = os.path.join(folder_path, "outlier_model.joblib")
         joblib.dump(ecod, outlier_model_path)
 
     # Get scores on training data

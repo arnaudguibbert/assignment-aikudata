@@ -43,7 +43,7 @@ class DataPipe:
             visualize_continuous_dist(
                 data=train_data_explo,
                 data_config=self.data_config,
-                save_path=self.data_config.path_in_explo(
+                folder_path=self.data_config.path_in_explo(
                     "train_continuous.png"
                 ),
             )
@@ -51,22 +51,22 @@ class DataPipe:
             visualize_categorical_dist(
                 data=train_data_explo,
                 data_config=self.data_config,
-                save_path=self.data_config.path_in_explo(
-                    "train_categorical.png"
+                folder_path=self.data_config.path_in_explo(
+                    "train_categorical"
                 ),
             )
 
             visualize_continuous_dist(
                 data=test_data_explo,
                 data_config=self.data_config,
-                save_path=self.data_config.path_in_explo("test_continuous.png"),
+                folder_path=self.data_config.path_in_explo("test_continuous.png"),
             )
 
             visualize_categorical_dist(
                 data=test_data_explo,
                 data_config=self.data_config,
-                save_path=self.data_config.path_in_explo(
-                    "test_categorical.png"
+                folder_path=self.data_config.path_in_explo(
+                    "test_categorical"
                 ),
             )
 
@@ -82,7 +82,7 @@ class DataPipe:
             test_data=test_data,
             numerical_cols=self.data_config.numerical_cols,
             threshold=self.data_config.threshold_outlier,
-            save_path=self.data_config.exploration_path,
+            folder_path=self.data_config.exploration_path,
         )
 
         # Saving data

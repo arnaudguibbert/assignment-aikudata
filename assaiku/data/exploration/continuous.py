@@ -35,7 +35,7 @@ def visualize_correlation(
         pearson_val.append({feat_col: col, score_col: abs(pearson_corr)})
 
     pearson_data = pd.DataFrame.from_records(pearson_val)
-    pearson_data.sort_values(by=score_col,inplace=True)
+    pearson_data.sort_values(by=score_col,inplace=True, ascending=False)
 
     fig = plt.figure(figsize=(12,7))
     ax = sns.barplot(data=pearson_data,x=feat_col,y=score_col)

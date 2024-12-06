@@ -5,7 +5,8 @@ import os
 
 from assaiku.data.config import DataConfig
 from assaiku.utils import create_folders
-from scipy.stats import chi2_contingency
+from scipy.stats import wasserstein_distance
+import numpy as np
 
 def proportion_comp(data: pd.DataFrame) -> pd.DataFrame:
     data["proportion"] = data["count"] / data["count"].sum()
@@ -31,50 +32,52 @@ def compute_dist(
 
     return (
         melt_df.groupby([label_col])
-        .apply(proportion_comp, include_groups=False)
-        .reset_index()
+        .apply(proportion_comp, include_groups=False).reset_index()
     )
 
 
-def visualize_independance(data: pd.DataFrame,
+def visualize_distance(data: pd.DataFrame,
     data_config: DataConfig,
     folder_path: str | None = None,
     feat_col: str = "feature",
-    p_val_col: str = "p value") -> None:
+    distance: str = "distance") -> None:
 
     if folder_path is not None:
         create_folders(folder_path)
 
     categorical_cols = data_config.categorical_cols
     label_col, weight_col = data_config.label, data_config.weight_col
+    neg_lab, pos_lab = data_config.label_values
 
-    p_values = []
+    distance_values = []
 
     for col in categorical_cols:
 
-        observed = compute_contigency_tab(data=data, cat_col=col, label_col=label_col, weight_col=weight_col)
+        dist = compute_dist(
+            data=data, cat_col=col, label_col=label_col, weight_col=weight_col
+        )
+
+        dist = dist.pivot(index=col, columns=label_col, values="proportion")
+
+        support = np.arange(len(dist))
+
+        dist_distance = wasserstein_distance(u_values=support, v_values=support, u_weights=dist[pos_lab], v_weights=dist[neg_lab]) / len(support)
 
         # print(observed.iloc[:,1:].to_markdown())
 
-        res = chi2_contingency(observed=observed.iloc[:,1:].values)
+        distance_values.append({feat_col: col, distance: dist_distance})
 
-        print(res)
-
-        p_values.append({feat_col: col, p_val_col: res.pvalue})
-
-    p_values_data = pd.DataFrame.from_records(p_values)
-    p_values_data.sort_values(by=p_val_col,inplace=True)
-
-    print(p_values_data.to_markdown())
+    distance_data = pd.DataFrame.from_records(distance_values)
+    distance_data.sort_values(by=distance,inplace=True, ascending=False)
 
     fig = plt.figure(figsize=(12,7))
-    ax = sns.barplot(data=p_values_data,x=feat_col,y=p_val_col)
-    ax.tick_params(axis="x", rotation=20)
+    ax = sns.barplot(data=distance_data,x=feat_col,y=distance)
+    ax.tick_params(axis="x", rotation=80)
     ax.set_yscale("log")
-    ax.set_title("Chi2 test p-values [categorical feature X income label]")
+    ax.set_title("Earth mover Distance between the distribution of each group")
 
     if folder_path is not None:
-        file_path = os.path.join(folder_path,f"chi_squared.png")
+        file_path = os.path.join(folder_path,f"distribution_distance.png")
         # print("Saving figure")
         # logger.info("Saving figure for categorical feature %s", col)
         fig.savefig(file_path)

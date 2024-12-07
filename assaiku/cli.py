@@ -34,7 +34,7 @@ def main() -> None:
 
     # ML pipeline
     eval_config = EvaluationConfig(
-        n_repet=1, # All models we are testing are determinitic in the way they are trained so far
+        n_repet=1,  # All models we are testing are determinitic in the way they are trained so far
         model_configs=[
             XGBConfig(
                 n_estimators=100,

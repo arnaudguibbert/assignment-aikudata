@@ -11,8 +11,9 @@ from ..configs import (
 
 from random import randint
 
+
 def initialize_model(model_config: ModelBaseConfig):
-    random_state = randint(0,1e5)
+    random_state = randint(0, 1e5)
     match model_config:
         case LogisticRegressionConfig():
             clf = LogisticRegression(

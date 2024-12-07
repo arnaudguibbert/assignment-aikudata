@@ -16,10 +16,10 @@ The `assaiku`library allows you to perform several tasks on the data coming from
 
 ### Environment setup
 
-Python package dependencies will be installed in an isolated conda environment, in addition a jupyter kernel will be created for jupyter notebook support. To do so, run the following make command from the repository root. Replace `<MANAGER>` by your package manager.
+Python package dependencies will be installed in an isolated conda environment, in addition a jupyter kernel will be created for jupyter notebook support. To do so, run the following make command from the repository root. Replace `<MANAGER>` by your package manager (`conda` or `micromamba`).
 
 ```
-make py-setup-env-dev MANAGER=conda
+make py-setup-env-dev MANAGER=<MANAGER>
 ```
 
 It creates an environment named `assaiku`, a kernel name `assaiku (Python 3.10)` and installs librairies. 
@@ -56,8 +56,4 @@ It runs the Data Pipeline, as well as the ML Pipeline.
 
 ## Our findings
 
-All our findings are reported in this [presentation]()
-
-## Future improvements
-
-
+All our findings are reported in this [presentation](./presentation.pdf)

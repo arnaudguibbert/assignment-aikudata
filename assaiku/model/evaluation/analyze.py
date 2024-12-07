@@ -1,8 +1,9 @@
+import os
+
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
-import os
 from assaiku.utils import create_folders
 
 

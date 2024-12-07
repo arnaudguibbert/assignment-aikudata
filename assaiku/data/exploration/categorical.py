@@ -1,12 +1,13 @@
+import os
+
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import seaborn as sns
-import os
+from scipy.stats import wasserstein_distance
 
 from assaiku.data.config import DataConfig
 from assaiku.utils import create_folders
-from scipy.stats import wasserstein_distance
-import numpy as np
 
 
 def proportion_comp(data: pd.DataFrame) -> pd.DataFrame:
@@ -100,6 +101,7 @@ def visualize_categorical_dist(
     data_config: DataConfig,
     folder_path: str | None = None,
     filter_cols: list[str] | None = None,
+    close_figs: bool = True,
 ) -> None:
     if folder_path is not None:
         create_folders(folder_path)
@@ -131,3 +133,6 @@ def visualize_categorical_dist(
             # print("Saving figure")
             # logger.info("Saving figure for categorical feature %s", col)
             fig.savefig(file_path)
+
+        if close_figs:
+            plt.close()

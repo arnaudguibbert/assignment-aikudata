@@ -32,17 +32,17 @@ def initialize_feat_processor(
         ("feature_preprocessor", ct),
     ]
 
-    if model_config.dimension_red is not None:
-        pipeline_components.append(
-            ("dim_reduction", PCA(n_components=model_config.dimension_red))
-        )
-
     if model_config.rbf_gamma is not None:
         pipeline_components.append(
             (
                 "rbf_sampler",
                 RBFSampler(gamma=model_config.rbf_gamma),
             )
+        )
+
+    if model_config.dimension_red is not None:
+        pipeline_components.append(
+            ("dim_reduction", PCA(n_components=model_config.dimension_red))
         )
 
     pipeline = Pipeline(pipeline_components)

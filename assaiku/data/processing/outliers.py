@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 from pyod.models.ecod import ECOD
+
 from assaiku.utils import create_folders
 
 

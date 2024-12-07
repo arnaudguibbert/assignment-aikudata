@@ -1,9 +1,9 @@
 import math
+import os
 
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-import os
 from pyod.utils.stat_models import wpearsonr
 
 from assaiku.data.config import DataConfig
@@ -57,6 +57,7 @@ def visualize_continuous_dist(
     folder_path: str | None = None,
     log_threshold: int = 2,
     filter_cols: list[str] | None = None,
+    close_figs: bool = True,
 ) -> None:
     data = data.copy()
 
@@ -104,3 +105,6 @@ def visualize_continuous_dist(
             # print("Saving figure")
             # logger.info("Saving figure for categorical feature %s", col)
             fig.savefig(file_path)
+
+        if close_figs:
+            plt.close()

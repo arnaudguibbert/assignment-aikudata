@@ -5,6 +5,7 @@ from .base import ModelBaseConfig
 
 class LogisticRegressionConfig(ModelBaseConfig):
     max_iter: int = Field(200, gt=1)
+    solver: str = "newton-cholesky"
 
     @property
     def name(self) -> str:

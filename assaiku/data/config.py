@@ -33,6 +33,7 @@ class DataConfig(BaseModel):
     perform_exploration: bool = True
     remove_duplicates: bool = True
     threshold_outlier: float | None = 18.0
+    drop_age: bool = True
 
     @property
     def features(self) -> list[str]:

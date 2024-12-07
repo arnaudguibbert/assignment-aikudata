@@ -25,6 +25,9 @@ dynamic = ["readme",
 # Changelog = "<CHANGELOG_URL>"
 Repository = "https://github.com/arnaudguibbert/dataiku-analysis"
 
+[project.scripts]
+assaiku = "assaiku.cli:main"
+
 [tool.setuptools.dynamic]
 readme = {file = "README"}
 version = {file = "VERSION"}

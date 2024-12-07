@@ -3,14 +3,13 @@ import pandas as pd
 from assaiku.data import DataConfig
 
 from .configs import EvaluationConfig
-from .evaluation import evaluate_model
+from .evaluation import analyze_data, evaluate_model
 from .processors import (
     fit_processor,
     initialize_feat_processor,
     split_transform,
 )
 from .train import initialize_model, train_model
-from .evaluation import analyze_data
 
 
 class MLPipe:
